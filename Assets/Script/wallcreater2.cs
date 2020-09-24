@@ -5,7 +5,7 @@ using UnityEngine;
 public class wallcreater2 : MonoBehaviour
 {
     float timer = 0;
-    int interval = 3;
+    int interval = 2;
 
     float speed = 20.0f;
 
