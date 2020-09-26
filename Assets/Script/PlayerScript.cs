@@ -10,37 +10,39 @@ public class PlayerScript : MonoBehaviour
     private Rigidbody rigidbody;
 
     private int score = 0;
+    private int bestscore = 0;
     public Text scoreText;
     public GameObject coin;
+    public Text bestscorelabel;
+    private string key = "BESTSCORE";
 
-    // public GameObject gameclearCanvas;
-    // bool gameclear = false;
 
     bool gravity = false;
 
     // Start is called before the first frame update
     void Start()
-    {
+    { 
        rigidbody = this.GetComponent<Rigidbody>();
-        GameObject coin = GameObject.Find("coin");
+        bestscore = PlayerPrefs.GetInt(key, 0);
+       bestscorelabel.text = "BestScore:" + bestscore.ToString();
     }
 
-    // Update is called once per frame
+    private void OnDestroy()
+    {
+        PlayerPrefs.SetInt("Score", score);
+        PlayerPrefs.Save();
+    }
+
     void Update()
     {
+        if (score > bestscore)
+        {
+            bestscore = score;
+            PlayerPrefs.SetInt(key, bestscore);
+            bestscorelabel.text = "BestScore" + bestscore.ToString();
+        }
+
         transform.position += new Vector3(0, 0, speed * Time.deltaTime);
-
-     //   if (this.transform.position.z > 380)
-        //{
-        //    gameclear = true;
-        //    gameclearCanvas.SetActive(true);
-
-
-        //    if (this.transform.position.y < -150)
-        //    {
-        //        SceneManager.LoadScene("title");
-        //    }
-        //}
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -61,9 +63,8 @@ public class PlayerScript : MonoBehaviour
         if (collision.gameObject.CompareTag("coin"))
         {
             score += 1;
-            scoreText.text = "Score:\t" + score;
-            Destroy(coin.gameObject);
+            scoreText.text = "Score:" + score;
         }
+       
     }
-
 }

@@ -26,7 +26,7 @@ public class enemycreater2 : MonoBehaviour
         interval = Random.Range(2.4f, 5.3f);
         if (timer >= interval)
         {
-            transform.position = new Vector3(0, Random.Range(-15f, -9.5f), GameObject.Find("stagecreater").transform.position.z);
+            transform.position = new Vector3(0, Random.Range(-15f, -10.5f), GameObject.Find("stagecreater2").transform.position.z);
             Instantiate(stageObject2, transform.position, transform.rotation);
             timer = 0;
         }

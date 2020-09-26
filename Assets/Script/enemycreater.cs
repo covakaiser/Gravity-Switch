@@ -14,7 +14,7 @@ public class enemycreater : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(gameObject, 10);
+      
     }
 
     // Update is called once per frame
@@ -23,10 +23,10 @@ public class enemycreater : MonoBehaviour
         transform.position += new Vector3(0, 0, speed * Time.deltaTime);
 
         timer += Time.deltaTime;
-        interval = Random.Range(1.3f, 4.4f);
+        interval = Random.Range(1.4f, 4.3f);
         if (timer >= interval)
         {
-            transform.position = new Vector3(0, Random.Range(16f,6.5f), GameObject.Find("stagecreater").transform.position.z);
+            transform.position = new Vector3(0, Random.Range(15f, 10.5f), GameObject.Find("stagecreater").transform.position.z);
             Instantiate(stageObject, transform.position, transform.rotation);
             timer = 0;
         }
